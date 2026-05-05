@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -284,10 +284,12 @@
                         </div>
                     </div>
                     
-                    <div class="relative w-full h-96">
+                    <div class="relative w-full h-[500px]">
                         <div class="absolute inset-0 bg-gradient-to-r from-red-500/20 to-purple-500/20 rounded-2xl"></div>
-                        <div class="relative h-full flex items-center justify-center">
-                            <i data-lucide="user" class="w-32 h-32 text-red-400"></i>
+                        <div id="heroCarousel" class="relative h-full">
+                            <img id="heroImage1" src="${imageBasePath}IMG_PROFIL_01.jpg" alt="KODE AMOS - Technicien Supérieur Génie Civil" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-100" loading="lazy">
+                            <img id="heroImage2" src="${imageBasePath}IMG_PROFIL_02.jpg" alt="KODE AMOS - Travaux de chantier" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
+                            <img id="heroImage3" src="${imageBasePath}IMG_PROFIL_03.jpg" alt="KODE AMOS - Contrôle qualité" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -780,6 +782,22 @@
             });
         }
 
+        // Carrousel automatique du Hero
+        let currentHeroSlide = 0;
+        const heroImages = ['heroImage1', 'heroImage2', 'heroImage3'];
+        
+        function startHeroCarousel() {
+            setInterval(() => {
+                heroImages.forEach((imgId, index) => {
+                    const img = document.getElementById(imgId);
+                    if (img) {
+                        img.style.opacity = index === currentHeroSlide ? '1' : '0';
+                    }
+                });
+                currentHeroSlide = (currentHeroSlide + 1) % heroImages.length;
+            }, 3000);
+        }
+
         // Vérifier les paramètres au chargement
         window.addEventListener('load', function() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -802,6 +820,9 @@
                 document.getElementById('portfolioChoice').classList.remove('hidden');
                 lucide.createIcons();
             }
+            
+            // Démarrer le carrousel Hero
+            startHeroCarousel();
         });
     </script>
 </body>
