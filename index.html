@@ -100,21 +100,6 @@
         .slide-item {
             min-width: 100%;
         }
-
-        .hero-carousel {
-            height: 100%;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-carousel img {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 1s ease-in-out;
-        }
     </style>
 </head>
 <body class="text-white">
@@ -301,10 +286,10 @@
                     
                     <div class="relative w-full h-[400px]">
                         <div class="absolute inset-0 bg-gradient-to-r from-red-500/20 to-purple-500/20 rounded-2xl"></div>
-                        <div class="hero-carousel">
-                            <img id="heroImage1" src="./IMG_PROFIL_01.jpg" alt="KODE AMOS - Technicien Supérieur Génie Civil" style="opacity: 1;" loading="lazy">
-                            <img id="heroImage2" src="./IMG_PROFIL_02.jpg" alt="KODE AMOS - Travaux de chantier" style="opacity: 0;" loading="lazy">
-                            <img id="heroImage3" src="./IMG_PROFIL_03.jpg" alt="KODE AMOS - Contrôle qualité" style="opacity: 0;" loading="lazy">
+                        <div id="heroCarousel" class="relative h-full">
+                            <img id="heroImage1" src="./IMG_PROFIL_01.jpg" alt="KODE AMOS - Technicien Supérieur Génie Civil" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-100" loading="lazy">
+                            <img id="heroImage2" src="./IMG_PROFIL_02.jpg" alt="KODE AMOS - Travaux de chantier" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
+                            <img id="heroImage3" src="./IMG_PROFIL_03.jpg" alt="KODE AMOS - Contrôle qualité" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -652,31 +637,34 @@
         const imageBasePath = "./";
         const portfolioImages = [
             // HYDRAULIQUE
-            { file: "IMG_HYDRA_01", cat: "hydraulique", title: "Canal de Yopougon", desc: "Canal de Yopougon" },
-            { file: "IMG_HYDRA_02", cat: "hydraulique", title: "Coffrage de Dalot", desc: "Coffrage de Dalot" },
-            { file: "IMG_HYDRA_03", cat: "hydraulique", title: "Contrôle de Ferraillage", desc: "Contrôle de Ferraillage" },
-            { file: "IMG_HYDRA_04", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Rabbatage de Nappe" },
-            { file: "IMG_HYDRA_05", cat: "hydraulique", title: "Contrôle de Site", desc: "Contrôle de Site" },
-            { file: "IMG_HYDRA_06", cat: "hydraulique", title: "Pose de Drain", desc: "Pose de Drain" },
-            { file: "IMG_HYDRA_07", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Rabbatage de Nappe" },
-            { file: "IMG_HYDRA_08", cat: "hydraulique", title: "Perre", desc: "Perre" },
+            { file: "IMG_HYDRA_01", cat: "hydraulique", title: "Canal de Yopougon", desc: "Construction et aménagement du canal de Yopougon pour le drainage urbain" },
+            { file: "IMG_HYDRA_02", cat: "hydraulique", title: "Coffrage de Dalot", desc: "Mise en œuvre du coffrage pour dalot de drainage et contrôle qualité" },
+            { file: "IMG_HYDRA_03", cat: "hydraulique", title: "Contrôle de Ferraillage", desc: "Inspection et validation du ferraillage des structures en béton armé" },
+            { file: "IMG_HYDRA_04", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Opération de rabattement de nappe phréatique pour les travaux de fondation" },
+            { file: "IMG_HYDRA_05", cat: "hydraulique", title: "Contrôle de Site", desc: "Supervision et contrôle technique du chantier d'hydraulique" },
+            { file: "IMG_HYDRA_06", cat: "hydraulique", title: "Pose de Drain", desc: "Installation du système de drainage agricole et urbain" },
+            { file: "IMG_HYDRA_07", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Gestion des eaux souterraines par pompage et rabattement" },
+            { file: "IMG_HYDRA_08", cat: "hydraulique", title: "Protection du Talus", desc: "Aménagement et protection des talus contre l'érosion" },
             
             // VRD
-            { file: "IMG_VRD_01", cat: "vrdroute", title: "Compactage de Route", desc: "Compactage de Route" },
-            { file: "IMG_VRD_02", cat: "vrdroute", title: "Bitumage", desc: "Bitumage" },
-            { file: "IMG_VRD_03", cat: "vrdroute", title: "Gravionnage", desc: "Gravionnage" },
-            { file: "IMG_VRD_04", cat: "vrdroute", title: "Stabilisation du Sol", desc: "Stabilisation du Sol" },
-            { file: "IMG_VRD_05", cat: "vrdroute", title: "Terrassement", desc: "Terrassement" },
-            { file: "IMG_VRD_06", cat: "vrdroute", title: "Terrassement", desc: "Terrassement" },
-            { file: "IMG_VRD_07", cat: "vrdroute", title: "Contrôle de Niveau", desc: "Contrôle de Niveau" },
-            { file: "IMG_VRD_08", cat: "vrdroute", title: "Ouverture de Voie", desc: "Ouverture de Voie" },
+            { file: "IMG_VRD_01", cat: "vrdroute", title: "Compactage de Route", desc: "Contrôle du compactage des couches de chaussée pour la voirie" },
+            { file: "IMG_VRD_02", cat: "vrdroute", title: "Bitumage", desc: "Application d'enrobé bitumineux pour les revêtements routiers" },
+            { file: "IMG_VRD_03", cat: "vrdroute", title: "Gravillonnage", desc: "Mise en œuvre de gravillons pour les couches de base et de forme" },
+            { file: "IMG_VRD_04", cat: "vrdroute", title: "Stabilisation du Sol", desc: "Traitement et stabilisation des sols pour les infrastructures routières" },
+            { file: "IMG_VRD_05", cat: "vrdroute", title: "Terrassement", desc: "Travaux de terrassement pour la préparation des plateformes" },
+            { file: "IMG_VRD_06", cat: "vrdroute", title: "Terrassement Précis", desc: "Excavation et nivellement précis pour les VRD et aménagements" },
+            { file: "IMG_VRD_07", cat: "vrdroute", title: "Contrôle de Niveau", desc: "Vérification des niveaux et altimétrie pour les travaux de VRD" },
+            { file: "IMG_VRD_08", cat: "vrdroute", title: "Ouverture de Voie", desc: "Création et aménagement de nouvelles voies de circulation" },
             
             // PROCÉDURES D'EXÉCUTION
-            { file: "PDF_EXEC_01", cat: "execution", title: "Plan Assurance Qualité", desc: "Document qualité PDF" },
-            { file: "PDF_EXEC_02", cat: "execution", title: "Procédure Bétonnage", desc: "Guide bétonnage PDF" },
-            { file: "PDF_EXEC_03", cat: "execution", title: "Contrôle Ferraillage", desc: "Procédure contrôle PDF" },
-            { file: "PDF_EXEC_04", cat: "execution", title: "Essais Laboratoire", desc: "Procédure essais PDF" },
-            { file: "PDF_EXEC_05", cat: "execution", title: "Sécurité Chantier", desc: "Plan sécurité PDF" }
+            { file: "PDF_EXEC_01", cat: "execution", title: "Plan Assurance Qualité", desc: "Procédure complète d'assurance qualité pour les travaux de génie civil" },
+            { file: "PDF_EXEC_02", cat: "execution", title: "Procédure Bétonnage", desc: "Guide détaillé des procédures de bétonnage et de mise en œuvre" },
+            { file: "PDF_EXEC_03", cat: "execution", title: "Contrôle Ferraillage", desc: "Procédures de contrôle et de validation des ouvrages en béton armé" },
+            { file: "PDF_EXEC_04", cat: "execution", title: "Essais Laboratoire", desc: "Protocoles d'essais et de contrôle des matériaux de construction" },
+            { file: "PDF_EXEC_05", cat: "execution", title: "Sécurité Chantier", desc: "Plan de sécurité et procédures de prévention des risques" },
+            { file: "PDF_EXEC_06", cat: "execution", title: "Plan de Chantier", desc: "Planning détaillé des travaux et organisation du chantier" },
+            { file: "PDF_EXEC_07", cat: "execution", title: "Contrôle Qualité", desc: "Procédures de contrôle qualité et réception des ouvrages" },
+            { file: "PDF_EXEC_08", cat: "execution", title: "Gestion Environnementale", desc: "Plan de gestion environnementale et protection des sites" },
         ];
 
         // Initialiser Lucide
