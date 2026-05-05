@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -99,6 +99,21 @@
         
         .slide-item {
             min-width: 100%;
+        }
+
+        .hero-carousel {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-carousel img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 1s ease-in-out;
         }
     </style>
 </head>
@@ -252,7 +267,7 @@
         </div>
 
         <!-- Hero Section -->
-        <section class="min-h-[60vh] flex items-center justify-center px-6 pt-20">
+        <section class="min-h-[60vh] flex items-center justify-center px-6 pt-4">
             <div class="max-w-7xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div class="space-y-6">
@@ -284,12 +299,12 @@
                         </div>
                     </div>
                     
-                    <div class="relative w-full h-[500px]">
+                    <div class="relative w-full h-[400px]">
                         <div class="absolute inset-0 bg-gradient-to-r from-red-500/20 to-purple-500/20 rounded-2xl"></div>
-                        <div id="heroCarousel" class="relative h-full">
-                            <img id="heroImage1" src="${imageBasePath}IMG_PROFIL_01.jpg" alt="KODE AMOS - Technicien Supérieur Génie Civil" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-100" loading="lazy">
-                            <img id="heroImage2" src="${imageBasePath}IMG_PROFIL_02.jpg" alt="KODE AMOS - Travaux de chantier" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
-                            <img id="heroImage3" src="${imageBasePath}IMG_PROFIL_03.jpg" alt="KODE AMOS - Contrôle qualité" class="absolute inset-0 w-full h-full object-cover rounded-2xl transition-opacity duration-1000 opacity-0" loading="lazy">
+                        <div class="hero-carousel">
+                            <img id="heroImage1" src="./IMG_PROFIL_01.jpg" alt="KODE AMOS - Technicien Supérieur Génie Civil" style="opacity: 1;" loading="lazy">
+                            <img id="heroImage2" src="./IMG_PROFIL_02.jpg" alt="KODE AMOS - Travaux de chantier" style="opacity: 0;" loading="lazy">
+                            <img id="heroImage3" src="./IMG_PROFIL_03.jpg" alt="KODE AMOS - Contrôle qualité" style="opacity: 0;" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -636,23 +651,25 @@
         // Configuration des images
         const imageBasePath = "./";
         const portfolioImages = [
-            // HYDRAULIQUE/ASSAINISSEMENT
-            { file: "IMG_HYDRA_01", cat: "hydraulique", title: "Canal Yopougon", desc: "Canal drainage 3,6km" },
-            { file: "IMG_HYDRA_02", cat: "hydraulique", title: "Coffrage Dalot", desc: "Passage des eaux" },
-            { file: "IMG_HYDRA_03", cat: "hydraulique", title: "Ferraillage", desc: "Armatures béton" },
-            { file: "IMG_HYDRA_04", cat: "hydraulique", title: "Contrôle Qualité", desc: "Validation matériaux" },
-            { file: "IMG_HYDRA_05", cat: "hydraulique", title: "Contrôle Site", desc: "Inspection chantier" },
-            { file: "IMG_HYDRA_06", cat: "hydraulique", title: "Bétonnage", desc: "Fondations" },
-            { file: "IMG_HYDRA_07", cat: "hydraulique", title: "Pose de Drain", desc: "Drainage horizontal" },
-            { file: "IMG_HYDRA_08", cat: "hydraulique", title: "Protection Talus", desc: "Protection du talus" },
+            // HYDRAULIQUE
+            { file: "IMG_HYDRA_01", cat: "hydraulique", title: "Canal de Yopougon", desc: "Canal de Yopougon" },
+            { file: "IMG_HYDRA_02", cat: "hydraulique", title: "Coffrage de Dalot", desc: "Coffrage de Dalot" },
+            { file: "IMG_HYDRA_03", cat: "hydraulique", title: "Contrôle de Ferraillage", desc: "Contrôle de Ferraillage" },
+            { file: "IMG_HYDRA_04", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Rabbatage de Nappe" },
+            { file: "IMG_HYDRA_05", cat: "hydraulique", title: "Contrôle de Site", desc: "Contrôle de Site" },
+            { file: "IMG_HYDRA_06", cat: "hydraulique", title: "Pose de Drain", desc: "Pose de Drain" },
+            { file: "IMG_HYDRA_07", cat: "hydraulique", title: "Rabbatage de Nappe", desc: "Rabbatage de Nappe" },
+            { file: "IMG_HYDRA_08", cat: "hydraulique", title: "Perre", desc: "Perre" },
             
-            // ROUTE/VRD
-            { file: "IMG_VRD_01", cat: "vrdroute", title: "Compactage Route", desc: "Compactage avec rouleau XP303K" },
-            { file: "IMG_VRD_02", cat: "vrdroute", title: "Gravionage", desc: "Mise en place couche de gravier" },
-            { file: "IMG_VRD_03", cat: "vrdroute", title: "Bitumage", desc: "Application couche de bitume" },
-            { file: "IMG_VRD_04", cat: "vrdroute", title: "Ouverture de Voie", desc: "Création nouvelle voie" },
-            { file: "IMG_VRD_05", cat: "vrdroute", title: "Terrassement", desc: "Travaux déblai/remblai" },
-            { file: "IMG_VRD_06", cat: "vrdroute", title: "Test Compactage", desc: "Essais de compactage" },
+            // VRD
+            { file: "IMG_VRD_01", cat: "vrdroute", title: "Compactage de Route", desc: "Compactage de Route" },
+            { file: "IMG_VRD_02", cat: "vrdroute", title: "Bitumage", desc: "Bitumage" },
+            { file: "IMG_VRD_03", cat: "vrdroute", title: "Gravionnage", desc: "Gravionnage" },
+            { file: "IMG_VRD_04", cat: "vrdroute", title: "Stabilisation du Sol", desc: "Stabilisation du Sol" },
+            { file: "IMG_VRD_05", cat: "vrdroute", title: "Terrassement", desc: "Terrassement" },
+            { file: "IMG_VRD_06", cat: "vrdroute", title: "Terrassement", desc: "Terrassement" },
+            { file: "IMG_VRD_07", cat: "vrdroute", title: "Contrôle de Niveau", desc: "Contrôle de Niveau" },
+            { file: "IMG_VRD_08", cat: "vrdroute", title: "Ouverture de Voie", desc: "Ouverture de Voie" },
             
             // PROCÉDURES D'EXÉCUTION
             { file: "PDF_EXEC_01", cat: "execution", title: "Plan Assurance Qualité", desc: "Document qualité PDF" },
