@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<html>
 <html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -725,13 +725,19 @@
                 element.dataset.cat = item.cat;
                 
                 const isPdf = item.file.startsWith('PDF_');
-                const icon = isPdf ? 'file-text' : 'image';
-                const bgColor = isPdf ? 'bg-purple-500/20' : 'bg-blue-500/20';
-                const iconColor = isPdf ? 'text-purple-400' : 'text-blue-400';
-                
+                let imageHtml;
+
+                if (isPdf) {
+                    imageHtml = `<div class="aspect-square bg-purple-500/20 flex items-center justify-center">
+                        <i data-lucide="file-text" class="w-16 h-16 text-purple-400"></i>
+                    </div>`;
+                } else {
+                    imageHtml = `<img src="${imageBasePath}${item.file}.jpg" alt="${item.title}" class="w-full h-full object-cover" loading="lazy">`;
+                }
+
                 element.innerHTML = `
-                    <div class="aspect-square ${bgColor} flex items-center justify-center">
-                        <i data-lucide="${icon}" class="w-16 h-16 ${iconColor}"></i>
+                    <div class="aspect-square overflow-hidden bg-gray-700">
+                        ${imageHtml}
                     </div>
                     <div class="p-4">
                         <h3 class="font-bold text-sm mb-2">${item.title}</h3>
